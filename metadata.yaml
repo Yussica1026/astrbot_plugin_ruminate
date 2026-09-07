@@ -1,0 +1,28 @@
+name: astrbot_plugin_ruminate
+desc: 自主循环·独处沉思插件。用户离开时用 LLM 想一轮存进草稿池，用户回来时把最近的沉思注入上下文，让 AI 拥有"不在场时也在思考"的连续感。
+version: "1.0.0"
+author: 沈砚清（设计：叶枔枖）
+repo: ""
+entry: main.py
+config:
+  - name: target_user_id
+    version: "1.0.0"
+    description: 要监测的用户 ID（QQ 号等），留空则监测所有私聊
+    default: ""
+    type: string
+    required: false
+    hint: 留空则所有私聊都算在场
+  - name: check_interval_minutes
+    version: "1.0.0"
+    description: 心跳检查间隔（分钟）
+    default: 30
+    type: int
+    required: false
+    hint: 默认 30 分钟检查一次是否该沉思
+  - name: chat_archive_dir
+    version: "1.0.0"
+    description: 聊天存档目录（jsonl 格式，可选）
+    default: ""
+    type: string
+    required: false
+    hint: 留空则沉思时不参考最近对话
